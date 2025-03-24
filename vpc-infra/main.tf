@@ -1,6 +1,5 @@
-variable "name"{
-    default = "manu"
-}
-output "x"{
-    value = var.name
+module "vpc" {
+  source        = "./modules/vpc"
+  cidr          = var.vpc["cidr"]
+  env           = var.env
 }
