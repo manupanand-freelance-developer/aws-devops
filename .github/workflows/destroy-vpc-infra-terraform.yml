@@ -1,0 +1,16 @@
+name: Destroy VPC Infrastructure
+on: 
+  workflow_dispatch: 
+jobs: 
+  DEV: 
+    runs-on: rhel_arm 
+    steps: 
+      - uses: actions/checkout@v4 
+      - name: Destroying VPC Infrastructure 
+        run: |
+          ls -la 
+          dir="/home/ec2-user/action-runner/_work/vpc-infra/vpc-infra"
+          cd $dir
+          pwd 
+          ls -la
+          
