@@ -9,7 +9,7 @@ jobs:
       - name: Destroying VPC Infrastructure 
         run: |
           ls -la 
-          dir="/home/ec2-user/action-runner/_work/vpc-infra/vpc-infra"
+          dir="/action-runner/_work/aws-devops/aws-devops/"
           cd $dir
           pwd 
           ls -la
