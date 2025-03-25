@@ -9,12 +9,15 @@ jobs:
       - uses: actions/checkout@v4
       - name: Terraform init 
         run: | 
-          
-          ls -la 
-          # terraform init -backend-config=env-dev/state.tfvars
+          cd vpc-infra-2-az
+          terraform init -backend-config=env-dev/state.tfvars
+      - name: Terraform plan 
+        run: | 
+          ls -la
+          terraform plan -var-file=env-dev/main.tfvars -auto-approve
       - name: Terraform apply 
         run: | 
-          # terraform apply -var-file=env-dev/main.tfvars -auto-approve
+          terraform apply -var-file=env-dev/main.tfvars -auto-approve
 #QA
 # UAT
 #PROD
