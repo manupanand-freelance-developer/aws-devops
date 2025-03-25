@@ -61,20 +61,23 @@ resource "aws_route_table" "db-subnets" {
 }
 # associate route tables with subnets
 resource "aws_route_table_association" "public-subnets-asso" {
+    depends_on = [ aws_route_table.public-subnets ]
     subnet_id         = aws_subnet.public-subnets.id 
-    route_table_id = aws_route_table.public_subnets.id  
+    route_table_id    = aws_route_table.public_subnets.id  
 
    
 }
 resource "aws_route_table_association" "kube-subnets-asso" {
+    depends_on = [ aws_route_table.kube-subnets ]
     subnet_id         = aws_subnet.kube-subnets.id 
     route_table_id = aws_route_table.kube-subnets.id
 
    
 }
 resource "aws_route_table_association" "db-subnets-asso" {
+  depends_on = [ aws_route_table.db-subnets ]
     subnet_id         = aws_subnet.db-subnets.id 
-    route_table_id = aws_route_table.db-subnets.id
+    route_table_id    = aws_route_table.db-subnets.id
 
    
 }
