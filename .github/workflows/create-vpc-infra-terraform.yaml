@@ -1,4 +1,4 @@
-name: Provision Infrastructure
+name: Create VPC Infrastructure
 on: 
   workflow_dispatch: 
 jobs: 
@@ -9,9 +9,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Terraform init 
         run: | 
-          dir="/home/ec2-user/action-runner/_work/vpc-infra/vpc-infra"
-          cd $dir
-          pwd 
+          
           ls -la 
           # terraform init -backend-config=env-dev/state.tfvars
       - name: Terraform apply 

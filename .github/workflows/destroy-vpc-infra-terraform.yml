@@ -8,9 +8,6 @@ jobs:
       - uses: actions/checkout@v4 
       - name: Destroying VPC Infrastructure 
         run: |
-          ls -la 
-          dir="/action-runner/_work/aws-devops/aws-devops/"
-          cd $dir
-          pwd 
-          ls -la
+         cd vpc-infra-2-az 
+         terraform destroy -var-file=env-dev/main.tfvars -auto-approve
           
