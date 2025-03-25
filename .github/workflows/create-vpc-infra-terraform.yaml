@@ -14,7 +14,7 @@ jobs:
       - name: Terraform plan 
         run: | 
           cd vpc-infra-2-az
-          terraform plan -var-file=env-dev/main.tfvars -auto-approve
+          terraform plan -var-file=env-dev/main.tfvars 
       - name: Terraform apply 
         run: | 
           ls -la
