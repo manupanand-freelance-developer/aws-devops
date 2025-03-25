@@ -1,5 +1,5 @@
 # subnets for vpc
-resource "aws_subnet" "public-subnets" {
+resource "aws_subnet" "public_subnets" {
   vpc_id        =   aws_vpc.private.id 
   cidr_block    =   var.public_subnets
 
@@ -7,7 +7,7 @@ resource "aws_subnet" "public-subnets" {
     Name="${var.env}-public-subnet"
   } 
 }
-resource "aws_subnet" "kube-subnets" {
+resource "aws_subnet" "kube_subnets" {
   vpc_id        =   aws_vpc.private.id 
   cidr_block    =   var.kube_subnets
 
@@ -15,7 +15,7 @@ resource "aws_subnet" "kube-subnets" {
     Name="${var.env}-kube-subnet"
   } 
 }
-resource "aws_subnet" "db-subnets" {
+resource "aws_subnet" "db_subnets" {
   vpc_id        =   aws_vpc.private.id 
   cidr_block    =   var.db_subnets
 
