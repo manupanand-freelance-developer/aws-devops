@@ -13,10 +13,11 @@ jobs:
           terraform init -backend-config=env-dev/state.tfvars
       - name: Terraform plan 
         run: | 
-          ls -la
+          cd vpc-infra-2-az
           terraform plan -var-file=env-dev/main.tfvars -auto-approve
       - name: Terraform apply 
         run: | 
+          ls -la
           terraform apply -var-file=env-dev/main.tfvars -auto-approve
 #QA
 # UAT
