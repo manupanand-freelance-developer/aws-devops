@@ -9,6 +9,7 @@ ec2_instance={
     server={
         instance_type ="t3.medium"
         volume_size   =10
+        policy_name=["AmazonEC2FullAccess","AmazonSSMFullAccess","AmazonS3ReadOnlyAccess"]
         server_port={
                 ssh={
                     port="22"
