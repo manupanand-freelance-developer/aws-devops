@@ -15,17 +15,17 @@ module "iam_role" {
 
 }
 
-# module "ec2_instance" {
-#   depends_on = [ module.iam_role,module.security_group ]
-#   source                = "./modules/ec2"
-#   for_each              = var.ec2_instance
-#   env                   = var.env
-#   name                  = each.key
-#   instance_type         = each.value["instance_type"]
-#   volume_size           = each.value["volume_size"] 
-#   ami_id                = var.ami_id
-#   subnet_id             = module.security_group.subnet_id
-#   security_group_id     = module.security_group.security_group_id
-#   iam_instance_profile  =module.iam_role.iam_instance_profile
+module "ec2_instance" {
+  depends_on = [ module.iam_role,module.security_group ]
+  source                = "./modules/ec2"
+  for_each              = var.ec2_instance
+  env                   = var.env
+  name                  = each.key
+  instance_type         = each.value["instance_type"]
+  volume_size           = each.value["volume_size"] 
+  ami_id                = var.ami_id
+  subnet_id             = module.security_group.subnet_id
+  security_group_id     = module.security_group.security_group_id
+  iam_instance_profile  =module.iam_role.iam_instance_profile
 
-# }
+}
