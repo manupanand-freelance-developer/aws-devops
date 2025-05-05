@@ -8,6 +8,10 @@ data "aws_vpc" "vpc_id" {
 data "aws_subnet" "subnet_id"{
     filter {
       name          ="vpc-id"
-      values        = [data.aws_vpc.vpc_id]
+      values        = [data.aws_vpc.vpc_id.id]
     }       
+    filter {
+      name = "tag:Name"
+      values = [var.subnet_name]
+    }
 }
