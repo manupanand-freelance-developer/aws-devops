@@ -24,8 +24,8 @@ module "ec2_instance" {
   instance_type         = each.value["instance_type"]
   volume_size           = each.value["volume_size"] 
   ami_id                = var.ami_id
-  subnet_id             = module.security_group.subnet_id
-  security_group_id     = module.security_group.security_group_id
-  iam_instance_profile  = module.iam_role.iam_instance_profile
+  subnet_id             = module.security_group[each.key].subnet_id
+  security_group_id     = module.security_group[each.key].security_group_id
+  iam_instance_profile  = module.iam_role[each.key].iam_instance_profile
 
 }
