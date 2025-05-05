@@ -1,6 +1,6 @@
 resource "aws_iam_role" "instance_role" {
     name     =  "${var.name}-iam-role"
-    assume_role_policy = jsondecode({
+    assume_role_policy = jsonencode({
         Version ="2012-10-17"
         Statement=[
            {
