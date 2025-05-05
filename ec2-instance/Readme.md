@@ -13,6 +13,14 @@ This repository contains infrastructure as code (IaC) configurations using **Ter
 ├── env-dev/
 │   ├── main.tfvars        # Environment-specific input variables
 │   └── state.tfvars       # Backend config for storing state remotely (e.g., in S3)
+├── modules/
+│   ├──ec2/
+|   |    ├── main.tf       
+│   |    └── variables.tf       
+│   └── security-group/
+|        ├── main.tf       
+│        └── variables.tf 
+├         
 ├── main.tf
 ├── variables.tf
 ├── outputs.tf
