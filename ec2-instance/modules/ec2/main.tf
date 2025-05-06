@@ -19,6 +19,12 @@ resource "aws_instance" "main" {
   root_block_device {
     volume_size                         = var.volume_size
   }
+  # user data script
+  user_data = base64encode(templatefile("${path.module}/userdata.sh",{
+        AWS_USER     = var.aws_user
+        AWS_PASSWORD = var.aws_password
+        role_name    ="ec2"
+  }))
   tags={
     Name="${var.env}-${var.name}-instance"
   }

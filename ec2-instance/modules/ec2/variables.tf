@@ -22,3 +22,9 @@ variable "security_group_id" {
 variable "iam_instance_profile" {
   
 }
+variable "aws_user" {
+  
+}
+variable "aws_password" {
+  
+}
