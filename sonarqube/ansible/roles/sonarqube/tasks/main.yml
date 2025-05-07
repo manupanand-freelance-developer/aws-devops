@@ -1,0 +1,50 @@
+
+- name: Setting prompt name
+  ansible.builtin.lineinfile:
+     path: "/home/ec2-user/.bashrc"
+     line: 'export PS1="\[\e[1;31m\]\u\[\e[0m\]@\[\e[1;34m\]{{ role_name }}\[\e[0m\] \w \$ "'
+     create: true
+     mode: '0644'
+- name: Installing firewalld
+  ansible.builtin.dnf: 
+    name: firewalld 
+    state: latest
+    enabled: true 
+
+- name: Enabling ports with firewalld
+  ansible.builtin.shell: | 
+     firewall-cmd --zone=public --add-port=22/tcp --permanent  && firewall-cmd --reload
+     firewall-cmd --zone=public --add-port=9000/tcp --permanent  && firewall-cmd --reload
+
+- name: Remove preinstalled Docker
+  ansible.builtin.shell: |
+     dnf remove docker \
+                docker-client \
+                docker-client-latest \
+                docker-common \
+                docker-latest \
+                docker-latest-logrotate \
+                docker-logrotate \
+                docker-engine \
+                podman \
+                runc
+
+- name: Installing dependencies and add repo, install docker
+  ansible.builtin.shell: |
+      dnf -y install dnf-plugins-core
+      dnf config-manager --add-repo https://download.docker.com/linux/rhel/docker-ce.repo
+      dnf install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+      chmod 666 /var/run/docker.sock
+
+
+- name: Enable Docker and firewalld
+  ansible.builtin.systemd_service: 
+   name: 
+     - docker
+     - firewalld
+   state: restarted
+   enabled: true
+
+- name: Install Sonarqube
+  ansible.builtin.shell: |
+     docker run -d --name sonarqube -p 9000:9000 sonarqube:lts-community
