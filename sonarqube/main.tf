@@ -16,9 +16,9 @@ module "iam_role" {
 
 }
 #create ec2-instance
-module "ec2_instance" {
+module "sonarqube" {
   depends_on = [ module.iam_role,module.security_group ]
-  source                = "./modules/ec2"
+  source                = "./modules/sonarqube"
   for_each              = var.ec2_instance
   env                   = var.env
   name                  = each.key
