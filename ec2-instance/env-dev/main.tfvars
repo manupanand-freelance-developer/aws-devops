@@ -1,7 +1,7 @@
 env             ="dev"
 vpc_name        ="default_vpc_south2"
 subnet_name     ="default-ap-south-2c"
-ami_id          ="ami-0e86c549c4c958e98"
+ami_id          ="ami-0b65747d06d841ffe"
 
 
 

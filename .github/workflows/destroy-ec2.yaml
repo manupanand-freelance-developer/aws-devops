@@ -15,7 +15,7 @@ jobs:
           secrets: | 
             tools/data/aws aws_user | AWS_USER;   
             tools/data/aws aws_password |AWS_PASSWORD;
-            tools/data/aws aws_ami_id | AWS_AMI_ID  ;
+           # tools/data/aws aws_ami_id | AWS_AMI_ID  ;
       - name: Destroying the Infrastructure
         run: |
          
