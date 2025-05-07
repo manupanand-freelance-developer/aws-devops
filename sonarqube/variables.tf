@@ -19,3 +19,6 @@ variable "aws_user" {
 variable "aws_password" {
   
 }
+variable "zone_id" {
+  
+}

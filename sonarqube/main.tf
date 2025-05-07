@@ -32,3 +32,12 @@ module "sonarqube" {
   aws_password          = var.aws_password  
 
 }
+# route 53
+module "dns" {
+
+  depends_on            = [ module.sonarqube ]
+  source                = "./modules/dns"
+  public_ip             = module.sonarqube.instance_ip
+  zone_id               = var.zone_id
+  
+}
