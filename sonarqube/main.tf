@@ -37,7 +37,8 @@ module "dns" {
 
   depends_on            = [ module.sonarqube ]
   source                = "./modules/dns"
-  public_ip             = module.sonarqube.instance_ip
+  for_each              = var.ec2_instance 
+  public_ip             = module.sonarqube[each.key].instance_ip
   zone_id               = var.zone_id
   
 }
