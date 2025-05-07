@@ -3,5 +3,5 @@ resource "aws_route53_record" "dns_public" {
   name    = "sonarqube"
   type    = "A"
   ttl     = 15
-  records = [public_ip]
+  records = [var.public_ip]
 }
