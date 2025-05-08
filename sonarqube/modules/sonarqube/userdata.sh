@@ -8,6 +8,9 @@ export role_name=$TF_VAR_role_name
 LOG_FILE="/var/log/startup_script.log"
 sudo touch $LOG_FILE
 sudo chmod 666 $LOG_FILE
+echo $AWS_USER | tee -a /var/log/startup_script.log
+echo $AWS_PASSWORD | tee -a /var/log/startup_script.log
+echo $role_name | tee -a /var/log/startup_script.log
 
 # Redirect stdout and stderr to log file
 
