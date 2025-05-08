@@ -9,12 +9,14 @@
   ansible.builtin.dnf: 
     name: firewalld 
     state: latest
-    enabled: true 
+    
 
 - name: Enabling ports with firewalld
   ansible.builtin.shell: | 
      firewall-cmd --zone=public --add-port=22/tcp --permanent  && firewall-cmd --reload
      firewall-cmd --zone=public --add-port=9000/tcp --permanent  && firewall-cmd --reload
+  args:
+    executable: /bin/bash
 
 - name: Remove preinstalled Docker
   ansible.builtin.shell: |
@@ -28,6 +30,8 @@
                 docker-engine \
                 podman \
                 runc
+  args:
+    executable: /bin/bash
 
 - name: Installing dependencies and add repo, install docker
   ansible.builtin.shell: |
@@ -35,12 +39,19 @@
       dnf config-manager --add-repo https://download.docker.com/linux/rhel/docker-ce.repo
       dnf install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
       chmod 666 /var/run/docker.sock
+  args:
+    executable: /bin/bash
 
 
-- name: Enable Docker and firewalld
+- name: Enable Docker 
   ansible.builtin.systemd_service: 
    name: 
      - docker
+   state: restarted
+   enabled: true
+- name: Enable  firewalld
+  ansible.builtin.systemd_service: 
+   name: 
      - firewalld
    state: restarted
    enabled: true
@@ -48,3 +59,5 @@
 - name: Install Sonarqube
   ansible.builtin.shell: |
      docker run -d --name sonarqube -p 9000:9000 sonarqube:lts-community
+  args:
+    executable: /bin/bash
