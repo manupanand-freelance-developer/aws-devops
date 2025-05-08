@@ -5,7 +5,7 @@ resource "aws_instance" "main" {
   subnet_id                 = var.subnet_id
   vpc_security_group_ids    = [ var.security_group_id ]
   iam_instance_profile      = var.iam_instance_profile
-  key_name                  = tostring(data.aws_key_pair.key_name)
+  key_name                  = "workstation-server"
 
   instance_market_options {
     market_type = "spot"
