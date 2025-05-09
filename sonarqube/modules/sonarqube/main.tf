@@ -25,6 +25,13 @@ resource "aws_instance" "main" {
         AWS_PASSWORD = var.aws_password
         role_name    ="sonarqube"
   }))
+  # testing ssh 
+      connection {
+      type     = "ssh" 
+      user     = var.aws_user
+      password = var.aws_password
+      host     = self.private_ip
+    }
   tags={
     Name="${var.env}-${var.name}-instance"
   }
