@@ -1,8 +1,7 @@
 name: Infrastructure sonarqube provisioning pipeline 
 on: 
   workflow_dispatch:
-      branches: 
-         - 'feature/sonarqube'
+
 jobs: 
   DEV: 
     runs-on: rhel_arm   
