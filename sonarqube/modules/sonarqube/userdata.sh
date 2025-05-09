@@ -17,6 +17,8 @@ echo $role_name | tee -a /var/log/startup_script.log
 
 
 echo "Starting script execution at $(date)"
+sudo dnf install -y git | tee -a /var/log/startup_script.log
+
 sudo dnf install -y sshpass | tee -a /var/log/startup_script.log
 sudo dnf install -y rsyslog | tee -a /var/log/startup_script.log
 
