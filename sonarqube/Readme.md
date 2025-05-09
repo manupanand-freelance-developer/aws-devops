@@ -1,5 +1,5 @@
 
-# 🌍 Terraform Infrastructure Deployment
+# 🌍 Sonarqube Infrastructure Deployment
 
 This repository contains infrastructure as code (IaC) configurations using **Terraform**. The setup is environment-specific, with variables and backend configurations maintained per environment (e.g., `env-dev`).
 
@@ -10,16 +10,30 @@ This repository contains infrastructure as code (IaC) configurations using **Ter
 ```
 
 .
+|── ansible/
+│   ├── roles/sonarqube/tasks/main.yml      
+│   └── playbook.yml 
 ├── env-dev/
 │   ├── main.tfvars        # Environment-specific input variables
 │   └── state.tfvars       # Backend config for storing state remotely (e.g., in S3)
 ├── modules/
-│   ├──ec2/
+│   ├──dns/
 |   |    ├── main.tf       
-│   |    └── variables.tf       
+│   |    └── variables.tf
+│   ├──iam-rule/
+|   |    ├── main.tf 
+|   |    ├── output.tf       
+│   |    └── variables.tf           
 │   └── security-group/
-|        ├── main.tf       
-│        └── variables.tf 
+|   |    ├── data.tf 
+|   |    ├── main.tf 
+|   |    ├── output.tf       
+│   |    └── variables.tf
+│   └── sonarqube/
+|        ├── data.tf 
+|        ├── main.tf 
+|        ├── output.tf       
+│        └── variables.tf  
 ├         
 ├── main.tf
 ├── variables.tf
@@ -45,6 +59,7 @@ Then run the following commands:
 Initializes the working directory and configures the backend:
 
 ```bash
+cd sonarqube
 terraform init -backend-config=env-dev/state.tfvars
 ````
 
