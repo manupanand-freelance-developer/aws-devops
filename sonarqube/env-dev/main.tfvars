@@ -18,6 +18,12 @@ ec2_instance={
                   qube={
                     port="9000"
                 }
+                 http={
+                    port="80"
+                }
+                 https={
+                    port="443"
+                }
             }
     }
 }
