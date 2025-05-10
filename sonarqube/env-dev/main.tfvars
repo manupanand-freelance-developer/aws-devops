@@ -8,7 +8,7 @@ zone_id         ="Z02556032JV56RSCGA16T"
 
 ec2_instance={
     sonarqube={
-        instance_type ="t3.medium"
+        instance_type ="t3.large"
         volume_size   =30
         policy_name=["AmazonEC2FullAccess","AmazonSSMFullAccess","AmazonS3ReadOnlyAccess"]
         server_port={
@@ -17,6 +17,12 @@ ec2_instance={
                 }
                   qube={
                     port="9000"
+                }
+                 http={
+                    port="80"
+                }
+                 https={
+                    port="443"
                 }
             }
     }
