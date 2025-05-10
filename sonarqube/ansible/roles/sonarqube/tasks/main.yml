@@ -5,14 +5,12 @@
      line: 'export PS1="\[\e[1;31m\]\u\[\e[0m\]@\[\e[1;34m\]{{ role_name }}\[\e[0m\] \w \$ "'
      create: true
      mode: '0644'
+
 - name: Installing firewalld
   ansible.builtin.dnf: 
     name: firewalld 
     state: latest
-    
-
-
-
+  
 - name: Remove preinstalled Docker
   ansible.builtin.shell: |
      dnf remove docker \
@@ -27,7 +25,6 @@
                 runc
   args:
     executable: /bin/bash
-
 
 - name: Installing dnf-plugins-core
   ansible.builtin.dnf:
