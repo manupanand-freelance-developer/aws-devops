@@ -93,9 +93,9 @@
      firewall-cmd --zone=public --add-port=443/tcp --permanent  && firewall-cmd --reload
   args:
     executable: /bin/bash
-
+# run docker on local port 9000 nut use internal to connect rather than creating docker network
 - name: Install Sonarqube
   ansible.builtin.shell: |
-     docker run -d --name sonarqube -p 9000:9000 sonarqube:lts-community
+      docker run --name sonarqube -p 127.0.0.1:9000:9000 sonarqube 
   args:
     executable: /bin/bash
