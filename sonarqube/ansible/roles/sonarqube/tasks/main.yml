@@ -57,14 +57,12 @@
 
 - name: Enable Docker 
   ansible.builtin.systemd_service: 
-   name: 
-     - docker
+   name:  docker
    state: restarted
    enabled: true
 - name: Enable  firewalld
   ansible.builtin.systemd_service: 
-   name: 
-     - firewalld
+   name:  firewalld
    state: restarted
    enabled: true
 
