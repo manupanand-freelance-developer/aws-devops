@@ -93,6 +93,6 @@
 # run docker on local port 9000 nut use internal to connect rather than creating docker network
 - name: Install Sonarqube
   ansible.builtin.shell: |
-      docker run --name sonarqube -p 127.0.0.1:9000:9000 sonarqube 
+      docker run -d --name sonar -p 9000:9000 sonarqube:lts-community 
   args:
     executable: /bin/bash
