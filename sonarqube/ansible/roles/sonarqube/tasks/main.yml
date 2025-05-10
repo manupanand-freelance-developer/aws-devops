@@ -28,6 +28,7 @@
   args:
     executable: /bin/bash
 
+
 - name: Installing dnf-plugins-core
   ansible.builtin.dnf:
     name:  dnf-plugins-core
@@ -84,14 +85,12 @@
    state: restarted
    enabled: true
 
-
 - name: Enabling ports with firewalld
   ansible.builtin.shell: | 
      firewall-cmd --zone=public --add-port=22/tcp --permanent  && firewall-cmd --reload
      firewall-cmd --zone=public --add-port=9000/tcp --permanent  && firewall-cmd --reload
      firewall-cmd --zone=public --add-port=80/tcp --permanent  && firewall-cmd --reload
      firewall-cmd --zone=public --add-port=443/tcp --permanent  && firewall-cmd --reload
-     
   args:
     executable: /bin/bash
 

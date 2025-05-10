@@ -1,6 +1,7 @@
 
 # 🌍 Sonarqube Infrastructure Deployment
 
+
 This repository contains infrastructure as code (IaC) configurations using **Terraform**. The setup is environment-specific, with variables and backend configurations maintained per environment (e.g., `env-dev`).
 
 ---
@@ -9,7 +10,7 @@ This repository contains infrastructure as code (IaC) configurations using **Ter
 
 ```
 
-.
+
 |── ansible/
 │   ├── roles/sonarqube/tasks/main.yml      
 │   └── playbook.yml 
@@ -40,7 +41,7 @@ This repository contains infrastructure as code (IaC) configurations using **Ter
 ├── outputs.tf
 └── README.md
 
-````
+```
 
 ---
 
@@ -60,8 +61,9 @@ Initializes the working directory and configures the backend:
 
 ```bash
 cd sonarqube
+
 terraform init -backend-config=env-dev/state.tfvars
-````
+```
 
 ### 2. Preview the Changes
 

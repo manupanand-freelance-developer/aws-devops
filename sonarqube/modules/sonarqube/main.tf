@@ -5,7 +5,7 @@ resource "aws_instance" "main" {
   subnet_id                 = var.subnet_id
   vpc_security_group_ids    = [ var.security_group_id ]
   iam_instance_profile      = var.iam_instance_profile
-  key_name                  = "workstation-server"
+
 
   instance_market_options {
     market_type = "spot"
@@ -20,18 +20,15 @@ resource "aws_instance" "main" {
     volume_size                         = var.volume_size
   }
   # user data script
+
   user_data = base64encode(templatefile("${path.module}/script.sh",{
+
         AWS_USER     = var.aws_user
         AWS_PASSWORD = var.aws_password
         role_name    ="sonarqube"
   }))
-  # testing ssh 
-      connection {
-      type     = "ssh" 
-      user     = var.aws_user
-      password = var.aws_password
-      host     = self.private_ip
-    }
+
+
   tags={
     Name="${var.env}-${var.name}-instance"
   }
