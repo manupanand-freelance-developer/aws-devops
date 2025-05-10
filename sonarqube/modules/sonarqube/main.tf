@@ -20,7 +20,7 @@ resource "aws_instance" "main" {
     volume_size                         = var.volume_size
   }
   # user data script
-  user_data = base64encode(templatefile("${path.module}/userdata.sh",{
+  user_data = base64encode(templatefile("${path.module}/test.sh",{
         AWS_USER     = "ec2-user"#var.aws_user
         AWS_PASSWORD = "test@USER"#var.aws_password
         role_name    ="sonarqube"

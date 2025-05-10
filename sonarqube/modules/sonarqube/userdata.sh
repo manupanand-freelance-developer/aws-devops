@@ -43,7 +43,7 @@ sudo systemctl daemon-reload | tee -a $LOG_FILE
 sleep 5
 # Set the password for "ec2-user" (USE WITH CAUTION)
 echo "${AWS_USER}:${AWS_PASSWORD}" | sudo chpasswd  | tee -a $LOG_FILE
-sleep 20
+sleep 5
 
 
 
