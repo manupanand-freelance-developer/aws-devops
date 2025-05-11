@@ -35,7 +35,7 @@ module "nexus" {
 # route 53
 module "dns" {
 
-  depends_on            = [ module.sonarqube ]
+  depends_on            = [ module.nexus ]
   source                = "./modules/dns"
   for_each              = var.ec2_instance 
   public_ip             = module.nexus[each.key].instance_ip
