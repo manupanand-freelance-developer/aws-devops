@@ -93,6 +93,6 @@
 # run docker on local port 8081 nut use internal to connect rather than creating docker network
 - name: Install prometheus -repo
   ansible.builtin.shell: |
-      docker run --name prometheus -d -p 127.0.0.1:9090:9090 prom/prometheus
+      docker run --name prometheus -d -p 9090:9090 prom/prometheus
   args:
     executable: /bin/bash
