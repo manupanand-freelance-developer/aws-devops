@@ -21,8 +21,8 @@ jobs:
          
           cd grafana; terraform destroy -var-file=env-dev/main.tfvars -auto-approve
         env: 
-          TF_VAR_aws_user: ${{secrets.AWS_USER}}
-          TF_VAR_aws_password: ${{secrets.AWS_PASSWORD}}
+          TF_VAR_aws_user: ${{env.AWS_USER}}
+          TF_VAR_aws_password: ${{env.AWS_PASSWORD}}
          # TF_VAR_aws_ami_id: ${{env.AWS_AMI_ID}}
           
 
