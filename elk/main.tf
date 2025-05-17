@@ -29,7 +29,8 @@ module "elk" {
   security_group_id     = module.security_group[each.key].security_group_id
   iam_instance_profile  = module.iam_role[each.key].iam_instance_profile
   aws_user              = var.aws_user
-  aws_password          = var.aws_password  
+  aws_password          = var.aws_password
+  vault_token           = var.vault_token  
 
 }
 # route 53
