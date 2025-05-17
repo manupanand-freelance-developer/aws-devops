@@ -22,3 +22,6 @@ variable "aws_password" {
 variable "zone_id" {
   
 }
+variable "vault_token" {
+  
+}
