@@ -74,6 +74,8 @@
 # do manual copy logstash conf 
 
 
+# instead copy to folder- edit file after doinf step 1-3
+
 # - name: Copy logstash conf
 #   ansible.builtin.template: 
 #     src: logstash.conf 
@@ -83,15 +85,15 @@
 
 # manual steps to do
 
-
+#step1
 #get an enrollment token for kibana to connec to elastic search
 #/usr/share/elasticsearch/bin/elasticsearch-create-enrollment-token -s kibana
-
+#step 2
 # verification code kibana
 #/usr/share/kibana/bin/kibana-verification-code
 
-
-# reset admin password -user elastic
+#step 3
+# reset password | admin  -user elastic
 #/usr/share/elasticsearch/bin/elasticsearch-reset-password -u elastic # keep in vault
 
 # beats is log shipper - unstructure |structure -logstash

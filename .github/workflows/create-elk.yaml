@@ -1,4 +1,4 @@
-name: Infrastructure sonarqube provisioning pipeline 
+name: ELK provisioning pipeline 
 on: 
   workflow_dispatch:
 
@@ -24,7 +24,7 @@ jobs:
         run: |
           ls -la
          
-          cd sonarqube;
+          cd elk;
           terraform init -backend-config=env-dev/state.tfvars ; terraform plan -var-file=env-dev/main.tfvars;terraform apply -var-file=env-dev/main.tfvars -auto-approve
         env:
             TF_VAR_aws_user: ${{env.AWS_USER}}
