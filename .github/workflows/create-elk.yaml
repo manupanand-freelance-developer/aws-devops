@@ -15,7 +15,7 @@ jobs:
           secrets: | 
             tools/data/aws aws_user | AWS_USER;   
             tools/data/aws aws_password |AWS_PASSWORD;
-            tools/data/vault token |vault_token;
+            tools/data/vault token |VAULT_TOKEN;
            # tools/data/aws aws_ami_id | AWS_AMI_ID ;
          #   # tools/data/aws vault_token |VAULT_TOKEN # give ami id on vault
         # tools is secretengine-check api 
@@ -30,7 +30,7 @@ jobs:
         env:
             TF_VAR_aws_user: ${{env.AWS_USER}}
             TF_VAR_aws_password: ${{env.AWS_PASSWORD}}
-            TF_VAR_vault_token: ${{secrets.vault_token}}
+            TF_VAR_vault_token: ${{env.VAULT_TOKEN}}
             #TF_VAR_aws_ami_id: ${{env.AWS_AMI_ID}}
 
   QA: 
