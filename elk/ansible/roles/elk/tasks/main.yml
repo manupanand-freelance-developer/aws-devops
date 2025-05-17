@@ -53,11 +53,10 @@
    src: nginx.conf
    dest: /etc/nginx/nginx.conf
 
+- name: Enablling network connection SElinux
+  ansible.builtin.shell: |
+     setsebool -P httpd_can_network_connect 1
 
-- name: Copy logstash conf
-  ansible.builtin.template: 
-    src: logstash.conf 
-    dest: /etc/logstash/conf.d/logstash.conf
 
 
 
@@ -70,12 +69,19 @@
     - elasticsearch
     - kibana
     - nginx 
-    - logstash  
 
 
-# reset admin password -user elastic
-#/usr/share/elasticsearch/bin/elasticsearch-reset-password -u elastic # keep in vault
+# do manual copy logstash conf 
 
+
+# - name: Copy logstash conf
+#   ansible.builtin.template: 
+#     src: logstash.conf 
+#     dest: /etc/logstash/conf.d/logstash.conf
+
+# restart logstash
+
+# manual steps to do
 
 
 #get an enrollment token for kibana to connec to elastic search
@@ -83,6 +89,10 @@
 
 # verification code kibana
 #/usr/share/kibana/bin/kibana-verification-code
+
+
+# reset admin password -user elastic
+#/usr/share/elasticsearch/bin/elasticsearch-reset-password -u elastic # keep in vault
 
 # beats is log shipper - unstructure |structure -logstash
 # logstash take information from beats and transfer it to elastic search

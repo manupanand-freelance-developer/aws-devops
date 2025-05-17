@@ -14,6 +14,7 @@ echo "========== Script started at $(date) =========="
 export AWS_USER="${AWS_USER}"
 export AWS_PASSWORD="${AWS_PASSWORD}"
 export role_name="${role_name}"
+export vault_token="${vault_token}"
 export ANSIBLE_HOST_KEY_CHECKING=False
 
 # Install dependencies
@@ -65,7 +66,7 @@ ansible-pull -i localhost, \
   -e ansible_user="${AWS_USER}" \
   -e ansible_password="${AWS_PASSWORD}" \
   -e role_name="${role_name}" \
-  -e vault_token
+  -e vault_token="${vault_token}"
 
 echo "========== Script completed at $(date) =========="
 # minimum three nodes  |kibana seperate as 1 UI
