@@ -47,23 +47,25 @@
       -  docker-compose-plugin
     state: present
 
-- name: Add ec2 user to docker group
-  ansible.builtin.user: 
-     name: ec2-user 
-     groups: docker 
-     append: yes
+
 
 - name: Enable Docker 
   ansible.builtin.systemd_service: 
    name:  docker
    state: restarted
    enabled: true
+   
 - name: Enable  firewalld
   ansible.builtin.systemd_service: 
    name:  firewalld
    state: restarted
    enabled: true
 
+- name: Add ec2 user to docker group
+  ansible.builtin.user: 
+     name: ec2-user 
+     groups: docker 
+     append: yes
 
 
 - name: Enabling ports with firewalld
