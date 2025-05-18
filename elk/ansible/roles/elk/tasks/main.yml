@@ -69,6 +69,7 @@
     - elasticsearch
     - kibana
     - nginx 
+    - logstash
 
 
 # do manual copy logstash conf 
