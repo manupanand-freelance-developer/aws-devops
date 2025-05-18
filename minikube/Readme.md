@@ -1,5 +1,5 @@
 
-# 🌍  Elasticsearch, Logstash, and Kibana Infrastructure Deployment
+# 🌍 Minikube Development Infrastructure Deployment
 
 
 This repository contains infrastructure as code (IaC) configurations using **Terraform**. The setup is environment-specific, with variables and backend configurations maintained per environment (e.g., `env-dev`).
@@ -12,7 +12,7 @@ This repository contains infrastructure as code (IaC) configurations using **Ter
 
 
 |── ansible/
-│   ├── roles/elk/tasks/main.yml      
+│   ├── roles/minikube/tasks/main.yml      
 │   └── playbook.yml 
 ├── env-dev/
 │   ├── main.tfvars        # Environment-specific input variables
@@ -30,7 +30,7 @@ This repository contains infrastructure as code (IaC) configurations using **Ter
 |   |    ├── main.tf 
 |   |    ├── output.tf       
 │   |    └── variables.tf
-│   └── elk/
+│   └── minikube/
 |        ├── data.tf 
 |        ├── main.tf 
 |        ├── output.tf       
@@ -60,7 +60,7 @@ Then run the following commands:
 Initializes the working directory and configures the backend:
 
 ```bash
-cd elk
+cd minikube
 
 terraform init -backend-config=env-dev/state.tfvars
 ```
@@ -82,6 +82,14 @@ terraform apply -var-file=env-dev/main.tfvars -auto-approve
 ```
 
 ---
+## Start minikube
+```
+ minikube start
+
+ alias kubectl = "minikube kubectl --"
+
+ k9s 
+```
 
 ## 🔐 Notes
 
