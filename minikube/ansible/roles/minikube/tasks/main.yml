@@ -81,7 +81,8 @@
 - name: Install minikube 
   ansible.builtin.dnf: 
     name: https://storage.googleapis.com/minikube/releases/latest/minikube-latest.x86_64.rpm
-    state: latest
+    state: present
+    disable_gpg_check: true
 
 #sudo minikube start --driver=none
 
@@ -89,4 +90,5 @@
 - name: Installing K9s
   ansible.builtin.dnf:
     name: https://github.com/derailed/k9s/releases/download/v0.50.6/k9s_linux_amd64.rpm
-    state: latest
+    state: present
+    disable_gpg_check: true
