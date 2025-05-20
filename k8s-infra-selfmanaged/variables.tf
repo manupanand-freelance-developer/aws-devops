@@ -46,4 +46,6 @@ variable "aws_user" {
 }
 variable "aws_password" {
   
+
 }
+
