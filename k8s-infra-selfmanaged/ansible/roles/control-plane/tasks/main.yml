@@ -133,16 +133,31 @@
 #     executable: /bin/bash
 #   become: true
 #   ignore_errors: true 
-- name: Copy Script file
-  ansible.builtin.copy: 
-    src: script.sh
-    dest: /tmp
-    mode: '0775'
+# - name: Copy Script file
+#   ansible.builtin.copy: 
+#     src: script.sh
+#     dest: /tmp
+#     mode: '0775'
 
-- name: Execute script
-  ansible.builtin.shell: |
-     cd /tmp
-     /bin/bash  script.sh
+# - name: Execute script
+#   ansible.builtin.shell: |
+#      cd /tmp
+#      /bin/bash  script.sh
+- name: Get home directory of ec2-user
+  ansible.builtin.user:
+    name: ec2-user
+  register: ec2_user
+
+- name: Set up kubeconfig for ec2-user
+  shell: |
+    rm -rf {{ ec2_user.home }}/.kube
+    mkdir -p {{ ec2_user.home }}/.kube
+    cp -i /etc/kubernetes/admin.conf {{ ec2_user.home }}/.kube/config
+    chown ec2-user:ec2-user {{ ec2_user.home }}/.kube/config
+    chmod 775 {{ ec2_user.home }}/.kube
+  args:
+    executable: /bin/bash
+  become: true
 
 
 - name: Restart kubelet 
