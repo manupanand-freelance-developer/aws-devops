@@ -111,6 +111,7 @@
     dest: "/tmp/token.sh"
     mode: '0660'
 
+
 - name: Restart kubelet 
   ansible.builtin.systemd_service: 
     name: kubelet 
@@ -163,6 +164,7 @@
       {{ join_command.stdout }} 
    dest: "/tmp/join.sh"
    mode: '0777'
+
 
 - name: Copy script file
   ansible.builtin.copy: 

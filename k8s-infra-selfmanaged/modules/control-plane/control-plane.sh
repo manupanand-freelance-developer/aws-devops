@@ -9,6 +9,7 @@ sudo touch $LOG_FILE
 sudo chmod 666 $LOG_FILE
 
 # Redirect stdout and stderr to log file
+
 exec >> "$LOG_FILE" 2>&1
 
 
@@ -30,6 +31,7 @@ sudo sed -i 's/^#PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh
 sudo sed -i 's/^PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config.d/50-cloud-init.conf 
 sudo sed -i 's/^ssh_pwauth: false/ssh_pwauth: true/' /etc/cloud/cloud.cfg 
 sleep 30
+
 sudo cloud-init clean 
 sudo cloud-init init 
 sleep 60
@@ -45,4 +47,3 @@ sudo dnf install -y ansible-core
 
 
 ansible-pull -i localhost, -U https://github.com/manupanand-freelance-developer/kubernetes-cluster-infra-aws  k8s-infra-selfmanaged/ansible/playbook.yml  -e ansible_user=${AWS_USER} -e ansible_password=${AWS_PASSWORD} -e role_name=${role_name} 
-

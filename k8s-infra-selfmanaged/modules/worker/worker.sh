@@ -8,6 +8,7 @@ export remote_ip=$TF_VAR_remote_ip
 LOG_FILE="/var/log/startup_script.log"
 sudo touch $LOG_FILE
 sudo chmod 666 $LOG_FILE
+
 # echo "AWS_USER: ${AWS_USER}" | tee -a /var/log/startup_script.log
 # echo "AWS_PASSWORD: ${AWS_PASSWORD}" | tee -a /var/log/startup_script.log
 # # echo "REMOTE_IP: ${remote_ip}" | tee -a /var/log/startup_script.log
@@ -20,9 +21,11 @@ echo "Starting script execution at $(date)"
 sudo dnf install -y sshpass 
 sudo dnf install -y rsyslog 
 
+
 sudo systemctl enable rsyslog
 sudo systemctl start rsyslog 
 sleep 30
+
 sudo sed -i 's/^#PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config 
 sudo sed -i 's/^PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config 
 sudo sed -i 's/^#ChallengeResponseAuthentication no/ChallengeResponseAuthentication yes/' /etc/ssh/sshd_config 
@@ -49,6 +52,7 @@ sudo dnf install -y ansible-core
 
 
 
+
 sleep 120
 
 while ! sshpass -p "${AWS_PASSWORD}" ssh -o StrictHostKeyChecking=no "${AWS_USER}"@"${remote_ip}" "[ -e /tmp/join.sh ]"; do
@@ -56,6 +60,7 @@ while ! sshpass -p "${AWS_PASSWORD}" ssh -o StrictHostKeyChecking=no "${AWS_USER
     sleep 10 
 done
 sleep 30
+
 sshpass -p "${AWS_PASSWORD}" scp -o StrictHostKeyChecking=no "${AWS_USER}"@"${remote_ip}":/tmp/join.sh /tmp/join.sh 
 sleep 30
 sudo chmod +x /tmp/join.sh  
@@ -63,3 +68,4 @@ sudo chmod +x /tmp/join.sh
 sudo /bin/bash /tmp/join.sh 
 
 ansible-pull -i localhost, -U https://github.com/manupanand-freelance-developer/kubernetes-cluster-infra-aws  k8s-infra-selfmanaged/ansible/playbook.yml  -e ansible_user=${AWS_USER} -e ansible_password=${AWS_PASSWORD} -e role_name=${role_name} 
+

@@ -35,7 +35,6 @@ resource "time_sleep" "delay" {
 }
 
 module "worker" {
- 
   source                    = "./modules/worker"
   depends_on                = [time_sleep.delay]
   for_each                  = var.worker_instance
