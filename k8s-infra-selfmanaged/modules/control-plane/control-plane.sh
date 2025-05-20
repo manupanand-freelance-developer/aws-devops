@@ -9,6 +9,7 @@ sudo touch $LOG_FILE
 sudo chmod 666 $LOG_FILE
 
 # Redirect stdout and stderr to log file
+exec >> "$LOG_FILE" 2>&1
 
 
 echo "Starting script execution at $(date)"

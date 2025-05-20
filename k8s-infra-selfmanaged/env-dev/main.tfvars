@@ -1,5 +1,4 @@
 env="dev"
-
 vpc_name     ="dev-private-vpc"
 subnet_name  ="dev-kube-subnet"
 
@@ -143,7 +142,7 @@ control_plane={
 
 worker_instance={
     worker_node_1={
-                instance_type="t3.small"  #intel
+                instance_type="t3.medium"  #intel
                 policy_name=["AmazonEC2FullAccess","AmazonSSMFullAccess","AmazonS3ReadOnlyAccess","AmazonEKSWorkerNodePolicy"]
                 volume_size=30  
           }
