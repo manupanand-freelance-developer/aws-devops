@@ -128,6 +128,7 @@
     sudo chmod 775 /home/ec2-user/.kube
   args:
     executable: /bin/bash
+  ignore_errors: true
 
 - name: Add KUBECONFIG to ec2-user's .bashrc
   become: true
@@ -138,6 +139,7 @@
     create: yes
     owner: ec2-user
     group: ec2-user
+  ignore_errors: true
 
 
 
