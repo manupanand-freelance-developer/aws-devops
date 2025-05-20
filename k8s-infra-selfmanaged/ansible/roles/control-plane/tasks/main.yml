@@ -164,34 +164,16 @@
    dest: "/tmp/join.sh"
    mode: '0777'
 
+- name: Copy script file
+  ansible.builtin.copy: 
+    src: script.sh
+    dest: /tmp/script.sh
+    mode: '0777'
 
-- name: Install Calico 
-  ansible.builtin.shell: |
-    kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.29.3/manifests/tigera-operator.yaml  --validate=false
-  args: 
-    executable: /bin/bash
-  ignore_errors: true 
-    
-- name: Wait for Calico CRDs to be available
-  ansible.builtin.shell: |
-    until kubectl get crds | grep -q "installations.operator.tigera.io"; do
-      echo "Waiting for Calico CRDs to be created..."
-      sleep 5
-    done
-  args:
-    executable: /bin/bash
+- name: Run Calico / network installation script as ec2-user
   become: true
-  changed_when: false
-  
-- name: Install Calico 
-  ansible.builtin.shell: |
-    curl https://raw.githubusercontent.com/projectcalico/calico/v3.29.3/manifests/custom-resources.yaml -O 
-    kubectl create -f custom-resources.yaml --validate=false
-  args: 
-    executable: /bin/bash
-  ignore_errors: true 
-  become: true
-
+  become_user: ec2-user
+  ansible.builtin.shell: /tmp/script.sh
 
 - name: Restart kubelet 
   ansible.builtin.systemd_service: 
