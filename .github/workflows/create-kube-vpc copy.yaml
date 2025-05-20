@@ -1,0 +1,43 @@
+name: Create Kubernetes VPC Infrastructure
+on: 
+  workflow_dispatch: 
+jobs: 
+# DEV-PLAN
+  DEV-VPC-APPLY:
+    runs-on: rhel_arm
+    environment: DEV 
+    steps: 
+      - uses: actions/checkout@v4
+      - name: Terraform init 
+        run: | 
+          cd vpc-kube-infra
+          terraform init -backend-config=env-dev/state.tfvars
+      - name: Terraform plan 
+        run: | 
+          cd vpc-kube-infra
+          terraform plan -var-file=env-dev/main.tfvars 
+      - name: Terraform apply 
+        run: | 
+          cd vpc-kube-infra
+          terraform apply -var-file=env-dev/main.tfvars -auto-approve
+  QA: 
+    runs-on: rhel_arm 
+    needs: DEV-VPC-APPLY
+    environment: QA
+    steps: 
+      - name: Running code on QA 
+        run: echo "Code run successfully after test" 
+  UAT: 
+    runs-on: rhel_arm 
+    needs: QA
+    environment: UAT 
+    steps: 
+      - name: Running code on QA 
+        run: echo "Code run successfully after test" 
+  PROD: 
+    runs-on: rhel_arm 
+    needs: UAT
+    environment: PROD
+    steps: 
+      - name: Running code on QA 
+        run: echo "Code run successfully and deployed" 

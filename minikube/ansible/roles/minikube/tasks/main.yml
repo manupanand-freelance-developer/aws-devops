@@ -86,7 +86,7 @@
     state: present
     disable_gpg_check: true
 
-#sudo minikube start --driver=none
+#sudo minikube start --driver=docker
 
 # installl k9s
 - name: Installing K9s
