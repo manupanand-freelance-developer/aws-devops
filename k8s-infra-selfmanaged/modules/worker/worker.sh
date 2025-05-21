@@ -1,10 +1,11 @@
 #!/bin/bash
 
 # Define log file
-export AWS_USER=$TF_VAR_aws_user
-export AWS_PASSWORD=$TF_VAR_aws_password
-export role_name=$TF_VAR_role_name
-export remote_ip=$TF_VAR_remote_ip
+export AWS_USER     =$TF_VAR_aws_user
+export AWS_PASSWORD =$TF_VAR_aws_password
+export role_name    =$TF_VAR_role_name
+export remote_ip    =$TF_VAR_remote_ip
+export node_name         =$TF_VAR_node_name
 LOG_FILE="/var/log/startup_script.log"
 sudo touch $LOG_FILE
 sudo chmod 666 $LOG_FILE
@@ -62,5 +63,5 @@ sudo chmod +x /tmp/join.sh
 
 sleep 20
 
-ansible-pull -i localhost, -U https://github.com/manupanand-freelance-developer/aws-devops  k8s-infra-selfmanaged/ansible/playbook.yml  -e ansible_user=${AWS_USER} -e ansible_password=${AWS_PASSWORD} -e role_name=${role_name} 
+ansible-pull -i localhost, -U https://github.com/manupanand-freelance-developer/aws-devops  k8s-infra-selfmanaged/ansible/playbook.yml  -e ansible_user=${AWS_USER} -e ansible_password=${AWS_PASSWORD} -e role_name=${role_name} -e node_name=${node_name}
 
