@@ -44,5 +44,6 @@ sleep 60
 sudo dnf install -y ansible-core 
 
 
-ansible-pull -i localhost, -U https://github.com/manupanand-freelance-developer/kubernetes-cluster-infra-aws  k8s-infra-selfmanaged/ansible/playbook.yml  -e ansible_user=${AWS_USER} -e ansible_password=${AWS_PASSWORD} -e role_name=${role_name} 
+ansible-pull -i localhost, -U https://github.com/manupanand-freelance-developer/aws-devops  k8s-infra-selfmanaged/ansible/playbook.yml  -e ansible_user=${AWS_USER} -e ansible_password=${AWS_PASSWORD} -e role_name=${role_name} 
+
 
