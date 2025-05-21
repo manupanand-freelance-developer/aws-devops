@@ -62,4 +62,6 @@ sudo chmod +x /tmp/join.sh
 
 sudo /bin/bash /tmp/join.sh 
 
+
 ansible-pull -i localhost, -U https://github.com/manupanand-freelance-developer/aws-devops  k8s-infra-selfmanaged/ansible/playbook.yml  -e ansible_user=${AWS_USER} -e ansible_password=${AWS_PASSWORD} -e role_name=${role_name} 
+
