@@ -1,4 +1,4 @@
-name: Infrastructure k8s destroy pipeline
+name: k8s destroy pipeline
 on: 
   workflow_dispatch:
 jobs:

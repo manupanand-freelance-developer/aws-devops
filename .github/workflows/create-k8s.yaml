@@ -1,4 +1,4 @@
-name: Infrastructure K8s provisioning pipeline 
+name:  K8s provisioning pipeline 
 on: 
   workflow_dispatch:
 jobs: 
