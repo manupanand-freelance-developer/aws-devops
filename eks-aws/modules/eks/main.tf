@@ -29,7 +29,7 @@ resource "aws_eks_node_group" "main" {
   cluster_name    = aws_eks_cluster.main.name
   node_group_name = each.key
   node_role_arn   = aws_iam_role.eks_node_group.arn
-  subnet_ids      = data.aws_subnet.kube_subnet.id
+  subnet_ids      = [data.aws_subnet.kube_subnet.id]
   instance_types  = each.value["instance_types"]
   capacity_type   = each.value["capacity_type"]
   ami_type        = each.value["ami_type"] 
@@ -37,7 +37,7 @@ resource "aws_eks_node_group" "main" {
   scaling_config {
     desired_size = each.value["min_size"]
     max_size     = each.value["max_size"]
-    min_size     = each.value["min_size "]
+    min_size     = each.value["min_size"]
   }
 
   
