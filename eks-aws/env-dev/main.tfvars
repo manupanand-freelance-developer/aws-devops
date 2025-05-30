@@ -5,6 +5,6 @@ subnet_name  ="dev-kube-subnet"
 
 #eks
 
-eks={
+# eks={
 
-}
+# }
