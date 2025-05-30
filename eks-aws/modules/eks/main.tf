@@ -32,7 +32,7 @@ resource "aws_eks_node_group" "main" {
   cluster_name    = aws_eks_cluster.main.name
   node_group_name = each.key
   node_role_arn   = aws_iam_role.eks_node_group.arn
-  subnet_ids      = [data.aws_subnet.kube_subnet.id]
+  subnet_ids      = [data.aws_subnet.kube_subnet_a.id,data.aws_subnet.kube_subnet_b.id,data.aws_subnet.kube_subnet_c.id]
   instance_types  = each.value["instance_types"]
   capacity_type   = each.value["capacity_type"]
   ami_type        = each.value["ami_type"] 
