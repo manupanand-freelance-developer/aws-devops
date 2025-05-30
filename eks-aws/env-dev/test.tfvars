@@ -1,8 +1,8 @@
   "addonName": "stormforge_optimize-live",
-            "addonName": "eks-pod-identity-agent",
+            "addonName": "eks-pod-identity-agent",v1.3.7-eksbuild.2
             "addonName": "leaksignal_leakagent",
             "addonName": "eks-node-monitoring-agent",
-            "addonName": "aws-ebs-csi-driver",
+            "addonName": "aws-ebs-csi-driver", v1.44.0-eksbuild.1
             "addonName": "adot",
             "addonName": "uptycs_uptycs-runtime-sensor",
             "addonName": "akuity_agent",
@@ -22,7 +22,7 @@
             "addonName": "solo-io_gloo-gateway",
             "addonName": "new-relic_kubernetes-operator",
             "addonName": "dynatrace_dynatrace-operator",
-            "addonName": "aws-guardduty-agent",
+            "addonName": "aws-guardduty-agent", v1.10.0-eksbuild.2
             "addonName": "kube-proxy",   v1.32.3-eksbuild.7  
             "addonName": "teleport_teleport",
             "addonName": "cisco_cisco-cloud-observability-collectors",
@@ -44,7 +44,7 @@
             "addonName": "kubecost_kubecost",
             "addonName": "vpc-cni",  v1.19.2-eksbuild.1
             "addonName": "aws-efs-csi-driver",
-            "addonName": "cert-manager",
+            "addonName": "cert-manager",v1.17.2-eksbuild.1
             "addonName": "calyptia_fluent-bit",
             "addonName": "prometheus-node-exporter",
             "addonName": "external-dns",
@@ -55,7 +55,7 @@
             "addonName": "spacelift_workerpool-controller",
             "addonName": "datadog_operator",
             "addonName": "solo-io_gloo-mesh-starter-pack",
-            "addonName": "amazon-cloudwatch-observability",
+            "addonName": "amazon-cloudwatch-observability",v4.0.1-eksbuild.1
             "addonName": "cribl_cribledge",
             "addonName": "nirmata_kyverno",
             "addonName": "snapshot-controller",
