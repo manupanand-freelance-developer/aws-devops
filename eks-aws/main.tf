@@ -5,5 +5,6 @@ module "eks" {
   subnet_name       = var.subnet_name   
   node_groups       = var.eks["node_groups"]
   eks_version       = var.eks["eks_version"]
+  add_ons           = var.eks["add_ons"]
 }
 

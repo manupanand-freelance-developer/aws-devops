@@ -1,5 +1,5 @@
 resource "aws_eks_cluster" "main" {
-  name                      = "${var.env}-eks"
+  name                      = "${var.env}-eks-cluster"
 
 # optional if need to auth via API or SSO
 #   access_config {
@@ -51,8 +51,10 @@ resource "aws_eks_node_group" "main" {
   ]
 }
 
-# resource "aws_eks_addon" "example" {
-#     depends_on = [ aws_eks_cluster.main,aws_eks_node_group.main ]
-#   cluster_name = aws_eks_cluster.example.name
-#   addon_name   = "vpc-cni"
-# }
+resource "aws_eks_addon" "eks_addons" {
+    depends_on     = [ aws_eks_cluster.main,aws_eks_node_group.main ]
+    for_each       = var.add_ons 
+    cluster_name   = aws_eks_cluster.main.name
+    addon_name     = each.key
+    addon_version  = each.value 
+}

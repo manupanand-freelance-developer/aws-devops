@@ -10,7 +10,7 @@ eks={
     node_groups={
         
         main_spot={
-            instance_types      =["t4g.medium"]
+            instance_types      =["t4g.medium"]#c7g.large
             max_size            = 3
             min_size            = 1 
             capacity_type       = "SPOT"
@@ -19,8 +19,13 @@ eks={
     }
     # aws eks describe-addon-versions command |grep addonName
     add_ons={
-        vpc-cni={
-            cni_version="v1.1.8"
-        }
+        vpc-cni="v1.19.5-eksbuild.3"
+        
+        metrics-server="v0.7.2-eksbuild.3"
+       
+        kube-proxy="v1.33.0-eksbuild.2"
+        
+        coredns="v1.12.1-eksbuild.2"
+        
     }
 }
