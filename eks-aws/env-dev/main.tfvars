@@ -1,8 +1,10 @@
 # vpc
 env="dev"
 vpc_name     ="dev-private-vpc"
-subnet_name  ="dev-kube-subnet"
-
+subnet_name_2a  ="dev-kbe-sbnt-ap-south-2a"
+subnet_name_2b  ="dev-kbe-sbnt-ap-south-2b" 
+subnet_name_2c  ="dev-kbe-sbnt-ap-south-2c"     
+  
 #eks
 
 eks={
