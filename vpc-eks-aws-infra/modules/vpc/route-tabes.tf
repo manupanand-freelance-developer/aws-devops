@@ -29,7 +29,7 @@ resource "aws_route_table" "kube_subnets" {
   # attach route nat gateway
   route{
     cidr_block      = "0.0.0.0/0"
-    nat_gateway_id  = aws_nat_gateway.public_subnet_ntgw.id
+    nat_gateway_id  = aws_nat_gateway.public_subnet_ntgw.*.id[count.index]
   }
 
   # attch peering connection 
@@ -52,7 +52,7 @@ resource "aws_route_table" "db_subnets" {
   # attach route nat gateway
   route{
     cidr_block      = "0.0.0.0/0"
-    nat_gateway_id  = aws_nat_gateway.public_subnet_ntgw.id
+    nat_gateway_id  = aws_nat_gateway.public_subnet_ntgw.*.id[count.index]
   }
 
   # attch peering connection 
