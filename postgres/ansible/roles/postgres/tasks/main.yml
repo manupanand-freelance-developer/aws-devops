@@ -1,0 +1,57 @@
+
+- name: Setting prompt name
+  ansible.builtin.lineinfile:
+     path: "/home/ec2-user/.bashrc"
+     line: 'export PS1="\[\e[1;31m\]\u\[\e[0m\]@\[\e[1;34m\]{{ role_name }}\[\e[0m\] \w \$ "'
+     create: true
+     mode: '0644'
+
+- name: Installing firewalld
+  ansible.builtin.dnf: 
+    name: firewalld 
+    state: latest
+  
+
+- name: Enable  firewalld
+  ansible.builtin.systemd_service: 
+   name:  firewalld
+   state: restarted
+   enabled: true
+
+
+
+- name: Enabling ports with firewalld
+  ansible.builtin.shell: | 
+     firewall-cmd --zone=public --add-port=22/tcp --permanent  && firewall-cmd --reload
+     firewall-cmd --zone=public --add-port=5432/tcp --permanent  && firewall-cmd --reload
+     firewall-cmd --zone=public --add-port=80/tcp --permanent  && firewall-cmd --reload
+     firewall-cmd --zone=public --add-port=443/tcp --permanent  && firewall-cmd --reload
+  args:
+    executable: /bin/bash
+
+- name: Install Postgreql repo 
+  ansible.builtin.shell: |
+    dnf install -y https://download.postgresql.org/pub/repos/yum/reporpms/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm 
+  args: 
+    executable: /bin/bash 
+
+- name: disable Postgreql module 
+  ansible.builtin.shell: |
+    dnf -qy module disable postgresql
+  args: 
+    executable: /bin/bash 
+
+- name: Install Postgresql
+  ansible.builtin.dnf: 
+    name: postgresql17-server 
+    state: latest 
+
+- name: Enable and start postgresql
+  ansible.builtin.systemd_service: 
+    name: postgresql-17
+    state: restarted 
+    enabled: true
+    
+
+
+
