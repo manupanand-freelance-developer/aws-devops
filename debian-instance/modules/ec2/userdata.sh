@@ -12,6 +12,9 @@ echo "Starting script execution at $(date)" | tee -a $LOG_FILE
 
 # Update package lists
 sudo apt-get update | tee -a $LOG_FILE
+sudo apt update  -y | tee -a $LOG_FILE
+sudo apt upgrade -y | tee -a $LOG_FILE
+sudo apt update --fix-missing  -y | tee -a $LOG_FILE
 
 # Install sshpass
 sudo apt-get install -y sshpass | tee -a $LOG_FILE
@@ -62,8 +65,55 @@ sudo apt-get update | tee -a $LOG_FILE
 
 # Install ansible-core
 sudo apt-get install -y ansible-core | tee -a $LOG_FILE
+# install only if needed
+#sudo apt install -y xfce4 xfce4-goodies | tee -a $LOG_FILE
+
+echo "Enabling additional repositories..." | tee -a $LOG_FILE
+sudo add-apt-repository -y universe | tee -a $LOG_FILE
+sudo add-apt-repository -y multiverse | tee -a $LOG_FILE
+
+# Try to install XFCE4
+echo "Installing XFCE4 desktop..." | tee -a $LOG_FILE
+sudo apt install -y xfce4 xfce4-goodies 2>&1 | tee -a $LOG_FILE
+# If XFCE4 fails, try alternative
+if [ $? -ne 0 ]; then
+    echo "XFCE4 installation failed, trying xubuntu-desktop..." | tee -a $LOG_FILE
+    sudo apt install -y xubuntu-desktop 2>&1 | tee -a $LOG_FILE
+fi
+
+# Install XRDP
+echo "Installing XRDP..." | tee -a $LOG_FILE
+sudo apt install -y xrdp 2>&1 | tee -a $LOG_FILE
+
+# Configure XRDP
+echo "Configuring XRDP..." | tee -a $LOG_FILE
+echo "xfce4-session" | sudo tee /home/ubuntu/.xsession
+sudo chown ubuntu:ubuntu /home/ubuntu/.xsession
+
+# Add xrdp user to ssl-cert group
+sudo adduser xrdp ssl-cert 2>&1 | tee -a $LOG_FILE
+
+# Enable and start XRDP
+sudo systemctl enable xrdp 2>&1 | tee -a $LOG_FILE
+sudo systemctl start xrdp 2>&1 | tee -a $LOG_FILE
+
+
+
+
+
+
+# Check if UFW is active and allow RDP port
+sudo ufw status | tee -a $LOG_FILE
+sudo ufw allow 3389/tcp 2>&1 | tee -a $LOG_FILE
+sudo ufw allow 22/tcp 2>&1 | tee -a $LOG_FILE
+sudo systemctl enable ufw  2>&1 | tee -a $LOG_FILE
+sudp systemctl restart ufw 2>&1 | tee -a $LOG_FILE
+
+echo "XRDP installation complete!"
+echo "Connect using Remmina with RDP protocol to this server's IP on port 3389"
 
 # Uncomment and modify as needed for your ansible-pull command
 # ansible-pull -i localhost, -U https://github.com/manupanand-freelance-developer/aws-devops.git ec2-instance/ansible/playbook.yml -e ansible_user=ubuntu -e ansible_password=${AWS_PASSWORD} -e role_name=${role_name} | tee -a $LOG_FILE
-
+sudo apt autoremove -y 2>&1 | tee -a $LOG_FILE
+sudo apt autoclean 2>&1 | tee -a $LOG_FILE
 echo "Script execution completed at $(date)" | tee -a $LOG_FILE
