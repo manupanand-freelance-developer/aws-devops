@@ -57,6 +57,8 @@ echo "ubuntu:${AWS_PASSWORD}" | sudo chpasswd | tee -a $LOG_FILE
 
 # If you need to set password for a custom user, uncomment the line below
 # echo "${AWS_USER}:${AWS_PASSWORD}" | sudo chpasswd | tee -a $LOG_FILE
+sudo systemctl restart sshd | tee -a $LOG_FILE
+sudo systemctl daemon-reload | tee -a $LOG_FILE
 
 sleep 60
 

@@ -14,6 +14,9 @@ ec2_instance={
                 ssh={
                     port="22"
                 }
+                rdp={
+                  port="3389"
+                }
             }
     }
 }
